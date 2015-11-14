@@ -141,7 +141,7 @@ class CurlRequest implements RequestInterface
         $this->lastHeaders = substr($response, 0, $headerLength);
         $body = substr($response, $headerLength);
 
-        if (isset($options['headers']['Content-Type']) && $options['headers']['Content-Type'] === 'application/json') {
+        if (isset($options['headers']['Content-Type']) && $options['headers']['Content-Type'] === 'application/json' || strpos($this->lastHeaders,'application/json') !== false) {
             return json_decode($body, true);
         }
 
